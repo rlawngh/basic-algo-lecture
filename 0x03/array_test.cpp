@@ -2,11 +2,22 @@
 using namespace std;
 
 void insert(int idx, int num, int arr[], int& len){
-
+    // idx 번째에 num을 삽입
+    len++;
+    for(int i=len-1; i>idx; i--){
+        arr[i]=arr[i-1];
+    }
+    arr[idx]=num;
 }
 
 void erase(int idx, int arr[], int& len){
-  
+    // idx 번째 원소를 지운다
+    // 0,1,2,3,4,5,6,..
+    for(int i=idx+1; i<len; i++){
+        arr[i-1]=arr[i];
+    }
+    len--;
+    
 }
 
 void printArr(int arr[], int& len){
@@ -14,7 +25,7 @@ void printArr(int arr[], int& len){
   cout << "\n\n";
 }
 
-void insert_test(){
+void insert_test(){ // 주석이 정답
   cout << "***** insert_test *****\n";
   int arr[10] = {10, 20, 30};
   int len = 3;
@@ -26,7 +37,7 @@ void insert_test(){
   printArr(arr, len);
 }
 
-void erase_test(){
+void erase_test(){ // 주석이 정답
   cout << "***** erase_test *****\n";
   int arr[10] = {10, 50, 40, 30, 70, 20};
   int len = 6;

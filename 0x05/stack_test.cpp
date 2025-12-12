@@ -3,18 +3,20 @@ using namespace std;
 
 const int MX = 1000005;
 int dat[MX];
-int pos = 0;
+int pos = 0; // 원소가 추가되어야 할 곳, 비어 있음, 이 값이 size
 
 void push(int x){
-
+  dat[pos]=x;
+  pos++;
 }
 
 void pop(){
-
+  if(pos)  pos--;
 }
 
 int top(){
-
+  if(pos) return dat[pos-1];
+  return -100;
 }
 
 void test(){

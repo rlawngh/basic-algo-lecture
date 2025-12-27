@@ -4,10 +4,11 @@ using namespace std;
 #define X first
 #define Y second
 int board[1002][1002];
-int dist[1002][1002];
+int dist[1002][1002]; // 여기선 dist 배열을 따로 둠
 int n,m;
 int dx[4] = {1,0,-1,0};
 int dy[4] = {0,1,0,-1};
+
 int main(void){
   ios::sync_with_stdio(0);
   cin.tie(0);
@@ -16,9 +17,9 @@ int main(void){
   for(int i = 0; i < n; i++){
     for(int j = 0; j < m; j++){
       cin >> board[i][j];
-      if(board[i][j] == 1)
+      if(board[i][j] == 1) // 익은 토마토 큐에 푸시
         Q.push({i,j});
-      if(board[i][j] == 0)
+      if(board[i][j] == 0) // 안 익은 토마토 dist=-1
         dist[i][j] = -1;
     }
   }
@@ -28,7 +29,7 @@ int main(void){
       int nx = cur.X + dx[dir];
       int ny = cur.Y + dy[dir];
       if(nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
-      if(dist[nx][ny] >= 0) continue;
+      if(dist[nx][ny] >= 0) continue; // 여기선 이렇게 이미 결정된 토마토들을 처리했구나..
       dist[nx][ny] = dist[cur.X][cur.Y]+1;
       Q.push({nx,ny});
     }
@@ -40,7 +41,7 @@ int main(void){
         cout << -1;
         return 0;
       }
-      ans = max(ans, dist[i][j]);
+      ans = max(ans, dist[i][j]); // 이차원 배열 최대값 찾기 그냥 이중 for문으로 했네...
     }
   }
   cout << ans;

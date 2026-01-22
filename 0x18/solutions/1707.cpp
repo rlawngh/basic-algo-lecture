@@ -9,23 +9,24 @@ int gr[20002];
 vector<int> adj[20002];
 
 bool solve() {
-  fill(gr, gr + v + 1, -1);
+  fill(gr, gr + v + 1, -1); // 미방분으로 초기화
   
   for(int i = 1; i <= v; i++) {
-    if(gr[i] != -1) continue;
+    if(gr[i] != -1) continue; // 방문-> continue
 
     queue<int> q;
     q.push(i);
     gr[i] = 0;
 
-    while(!q.empty()) {
-      int cur = q.front(); q.pop();
-      for(int nxt : adj[cur]) {
-        if(gr[nxt] != -1){
+    while(!q.empty()) { // bfs
+      int cur = q.front(); q.pop(); // cur: 이미 칠해짐
+      for(int nxt : adj[cur]) { // cur의 인접들 체크
+        if(gr[nxt] != -1){ // 방문
           if(gr[nxt] == gr[cur]) return false;
           else continue;
         }
-        gr[nxt] = (gr[cur] + 1)%2;
+        // 미방문
+        gr[nxt] = (gr[cur] + 1)%2; // 이미 칠해진 cur의 근접 -> 반대 색깔 강제, 타당성 체크는 아직 안함!
         q.push(nxt);
       }
     }

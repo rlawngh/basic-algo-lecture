@@ -9,6 +9,7 @@ vector<int> adj[100001];
 int p[100001];
 
 void dfs(int cur) {
+  // 넥스트가 없으면(leaf) 아래 반복문을 안 돌아서 리턴됨, 그래서 따로 종료조건 필요 없음
   for (int nxt : adj[cur]) {
     if (p[cur] == nxt) continue;
     p[nxt] = cur;
